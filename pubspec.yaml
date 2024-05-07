@@ -14,6 +14,7 @@ dependencies:
     # path: auto_route_library-master/auto_route
   go_router: any
     # path: go_router
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
