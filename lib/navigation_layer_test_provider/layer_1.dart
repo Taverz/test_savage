@@ -9,20 +9,38 @@ import 'package:test_savage/navigation_layer_test_provider/provid/count_prov.dar
 class Layer_1 extends StatefulWidget {
   const Layer_1({super.key});
 
-  @override
-  State<Layer_1> createState() {
-    print('Layer_1 -> Widget - createState');
-    return _Layer_1State();
-  }
-
+  /// 1
   @override
   StatefulElement createElement() {
     print('Layer_1 -> Widget - createElement');
     return super.createElement();
   }
+
+  /// 2
+  @override
+  State<Layer_1> createState() {
+    print('Layer_1 -> Widget - createState');
+    return _Layer_1State();
+  }
 }
 
 class _Layer_1State extends State<Layer_1> {
+
+  /// 3
+  @override
+  void initState() {
+    print('Layer_1 -> initState');
+    super.initState();
+  }
+
+  /// 4 - pre Build
+  @override
+  void didChangeDependencies() {
+    print('Layer_1 -> didChangeDependencies');
+    super.didChangeDependencies();
+  }
+
+  /// 5
   @override
   Widget build(BuildContext context) {
     print('Layer_1 -> build');
@@ -77,48 +95,44 @@ class _Layer_1State extends State<Layer_1> {
     );
   }
 
-  @override
-  void initState() {
-    print('Layer_1 -> initState');
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(covariant Layer_1 oldWidget) {
-    print('Layer_1 -> didUpdateWidget');
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void didChangeDependencies() {
-    print('Layer_1 -> didChangeDependencies');
-    super.didChangeDependencies();
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    print('Layer_1 -> debugFillProperties');
-    super.debugFillProperties(properties);
-  }
-
-  @override
-  void reassemble() {
-    print('Layer_1 -> reassemble');
-    super.reassemble();
-  }
-
+  /// 6
   @override
   void deactivate() {
     print('Layer_1 -> deactivate');
     super.deactivate();
   }
 
+  /// 7
   @override
   void dispose() {
     print('Layer_1 -> dispose');
     super.dispose();
   }
 
+///// ---------------------------
+
+  /// NO BASE
+  @override
+  void didUpdateWidget(covariant Layer_1 oldWidget) {
+    print('Layer_1 -> didUpdateWidget');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  /// NO BASE
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    print('Layer_1 -> debugFillProperties');
+    super.debugFillProperties(properties);
+  }
+
+  /// NO BASE
+  @override
+  void reassemble() {
+    print('Layer_1 -> reassemble');
+    super.reassemble();
+  }
+
+  /// NO BASE
   @override
   void activate() {
     print('Layer_1 -> activate');
