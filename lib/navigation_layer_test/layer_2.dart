@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/diagnostics.dart';
+import 'package:test_savage/navigation_layer_test/layer_1.dart';
+import 'package:test_savage/navigation_layer_test/layer_1_1.dart';
 
 class Layer_2 extends StatefulWidget {
   const Layer_2({super.key});
@@ -18,11 +20,58 @@ class Layer_2 extends StatefulWidget {
 }
 
 class _Layer_2State extends State<Layer_2> {
-
   @override
   Widget build(BuildContext context) {
     print('Layer_2 -> build');
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            print('Navigator POP');
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+          });
+        },
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            const Text('Layer_1'),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Layer_1(),
+                  ),
+                );
+              },
+              child: Text('Layer_2'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Layer_1_1(),
+                  ),
+                );
+              },
+              child: Text('Layer_1_1'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -42,6 +91,7 @@ class _Layer_2State extends State<Layer_2> {
     print('Layer_2 -> didChangeDependencies');
     super.didChangeDependencies();
   }
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     print('Layer_2 -> debugFillProperties');
@@ -59,6 +109,7 @@ class _Layer_2State extends State<Layer_2> {
     print('Layer_2 -> deactivate');
     super.deactivate();
   }
+
   @override
   void dispose() {
     print('Layer_2 -> dispose');

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_savage/navigation_layer_test/layer_1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,9 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => Layer_1(),
+      ),
+    );
+    // setState(() {
+    //   _counter++;
+    // });
   }
 
   @override
