@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:test_savage/navigation_layer_test/layer_1.dart';
+import 'package:test_savage/navigation_layer_test_provider/layer_1.dart';
 import 'package:test_savage/navigation_layer_test_provider/provid/count_prov.dart';
+import 'package:test_savage/navigation_layer_test_provider/provid/count_simple_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,15 +16,41 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(create: (_)=> CountProvider()),
+        /// ListenableProvider: конкретный Provider объекта Listenable. ListenableProvider будет прослушивать объект и 
+        /// запрашивать виджеты, которые зависят от него, 
+        /// перестроиться при каждом вызове прослушивателя.
+        /// ------- ==>
+        /// ChangeNotifierProvider: спецификация ListenableProvider для 
+        /// ChangeNotifier. При необходимости он 
+        /// автоматически вызовет ChangeNotifier.dispose.
+        ChangeNotifierProvider(
+          create: (_) => CountProvider(),
+        ),
+
+
+        /// Общая реализация InheritedWidget . 
+        /// Любой потомок этого виджета может получить его valueс помощью Provider.of . 
+        /// Не используйте этот класс напрямую, если вы не создаете собственный «Поставщик». 
+        /// Вместо этого используйте класс Provider , который является оберткой InheritedProvider .
+        InheritedProvider<int>(
+          create: (context) => 0,
+          dispose: (context, value) => value = 0,
+        ),
+        /// Provider: Самая основная форма Provider. Он принимает значение и раскрывает его, каким бы оно ни было.
+        Provider(
+          create: (_) => CountSimpleProvider(),
+        ),
+
+
+        /// TODO: InheritedWidget  ??? !!!!
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Tested state flutter widget',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        home: const MyHomePage(title: 'Home Page'),
       ),
     );
   }

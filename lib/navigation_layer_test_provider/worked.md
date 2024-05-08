@@ -117,3 +117,13 @@ flutter: Layer_1_1 -> dispose
 
 
 
+## Provider listen state in build
+
+flutter: Provider read count - Button onTap
+flutter: Layer_1 -> didChangeDependencies
+flutter: Layer_1 -> build
+flutter: Provider read count - Button onTap
+flutter: Layer_1 -> didChangeDependencies
+flutter: Layer_1 -> build
+
+

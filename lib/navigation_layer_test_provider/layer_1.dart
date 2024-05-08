@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:test_savage/navigation_layer_test/layer_1_1.dart';
-import 'package:test_savage/navigation_layer_test/layer_2.dart';
+import 'package:test_savage/navigation_layer_test_provider/layer_1_1.dart';
+import 'package:test_savage/navigation_layer_test_provider/layer_2.dart';
 import 'package:test_savage/navigation_layer_test_provider/provid/count_prov.dart';
 
 class Layer_1 extends StatefulWidget {
@@ -57,6 +57,7 @@ class _Layer_1State extends State<Layer_1> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          print('Provider read count - Button onTap');
           context.read<CountProvider>().countPlus();
         },
         tooltip: 'Increment',
